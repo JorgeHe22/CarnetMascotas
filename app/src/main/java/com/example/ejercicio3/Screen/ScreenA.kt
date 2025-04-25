@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -33,7 +35,8 @@ fun ScreenA(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -47,7 +50,7 @@ fun ScreenA(navController: NavController) {
             onValueChange = { nombre = it },
             label = { Text("Nombre") },
             modifier = Modifier
-                .fillMaxWidth()  // Changed from fillMaxSize to fillMaxWidth
+                .fillMaxWidth()
                 .padding(vertical = 8.dp)
         )
 
@@ -96,7 +99,7 @@ fun ScreenA(navController: NavController) {
                     nombre = nombre,
                     raza = raza,
                     tamano = tamano,
-                    edad = edad.toIntOrNull() ?: 0,
+                    edad = edad,
                     foto = foto
                 )
                 navController.currentBackStackEntry?.savedStateHandle?.set("animal", animal)
